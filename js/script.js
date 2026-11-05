@@ -17,27 +17,69 @@ if (savedTheme === "light") {
     themeToggle.setAttribute("aria-label", "Switch to dark mode");
 }
 
-// Toggle theme
-themeToggle.addEventListener("click", function () {
+// =========================
+// THEME + RESPONSIVE MENU
+// =========================
 
-    const currentTheme = document.documentElement.getAttribute("data-theme");
+document.addEventListener("DOMContentLoaded", function () {
 
-    if (currentTheme === "light") {
+    // THEME TOGGLE
+    const themeButton = document.getElementById("theme-toggle");
 
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("ameen-theme", "dark");
+    if (themeButton) {
 
-        themeToggle.textContent = "☀️";
-        themeToggle.setAttribute("aria-label", "Switch to light mode");
+        function setTheme(theme) {
 
-    } else {
+            if (theme === "light") {
+                document.documentElement.setAttribute("data-theme", "light");
+                themeButton.textContent = "🌙";
+            } else {
+                document.documentElement.removeAttribute("data-theme");
+                themeButton.textContent = "☀️";
+            }
 
-        document.documentElement.setAttribute("data-theme", "light");
-        localStorage.setItem("ameen-theme", "light");
+            localStorage.setItem("ameen-theme", theme);
+        }
 
-        themeToggle.textContent = "🌙";
-        themeToggle.setAttribute("aria-label", "Switch to dark mode");
+        const savedTheme = localStorage.getItem("ameen-theme") || "dark";
+        setTheme(savedTheme);
 
+        themeButton.addEventListener("click", function () {
+            const currentTheme =
+                document.documentElement.getAttribute("data-theme");
+
+            setTheme(currentTheme === "light" ? "dark" : "light");
+        });
+    }
+
+
+    // RESPONSIVE MENU
+    const menuButton = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (menuButton && navMenu) {
+
+        menuButton.addEventListener("click", function () {
+
+            navMenu.classList.toggle("active");
+
+            const isOpen = navMenu.classList.contains("active");
+
+            menuButton.textContent = isOpen ? "✕" : "☰";
+            menuButton.setAttribute("aria-expanded", isOpen);
+
+        });
+
+        // Close menu after selecting a link
+        navMenu.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+                navMenu.classList.remove("active");
+                menuButton.textContent = "☰";
+                menuButton.setAttribute("aria-expanded", "false");
+            });
+
+        });
     }
 
 });
