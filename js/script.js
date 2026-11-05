@@ -4,70 +4,93 @@
 console.log("Ameen Portfolio is running successfully!");
 
 // =========================
+// =========================
 // AMEEN PORTFOLIO CONTACT FORM
 // =========================
 
 const contactForm = document.getElementById("contact-form");
-
 const formStatus = document.getElementById("form-status");
 
-contactForm.addEventListener("submit", function(event) {
+if (contactForm) {
 
-    // Prevent default form submission
-    event.preventDefault();
+    contactForm.addEventListener("submit", async function(event) {
 
-    // Get user input values
-    const name = document.getElementById("name").value.trim();
+        // Prevent default form submission
+        event.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
+        // Get user input values
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-    const subject = document.getElementById("subject").value.trim();
+        // Basic validation
+        if (!name || !email || !subject || !message) {
+            formStatus.textContent = "Please fill in all fields.";
+            return;
+        }
 
-    const message = document.getElementById("message").value.trim();
+        // Get submit button
+        const submitButton = contactForm.querySelector(
+            'button[type="submit"]'
+        );
 
+        // Prepare form data
+        const formData = new FormData(contactForm);
 
-    // Basic validation
-    if (!name || !email || !subject || !message) {
+        // Set email reply address and subject
+        formData.set("_replyto", email);
+        formData.set("_subject", subject);
 
-        formStatus.textContent = "Please fill in all fields.";
+        try {
 
-        return;
-    }
+            // Show sending message
+            formStatus.textContent = "Sending your message...";
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
 
+            // Send message through Formspree
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
 
-    // Your real email address goes here
-    const recipient = "YOUR_EMAIL@example.com";
+            if (response.ok) {
 
+                formStatus.textContent =
+                    "Message sent successfully! Thank you for contacting me.";
 
-    if (recipient === "YOUR_EMAIL@example.com") {
+                // Clear form fields
+                contactForm.reset();
 
-        formStatus.textContent =
-            "Please configure your email address in script.js first.";
+            } else {
 
-        return;
-    }
+                formStatus.textContent =
+                    "Sorry, something went wrong. Please try again.";
 
+            }
 
-    // Prepare email content
-    const emailSubject = encodeURIComponent(subject);
+        } catch (error) {
 
-    const emailBody = encodeURIComponent(
-        "Name: " + name +
-        "\nEmail: " + email +
-        "\n\nMessage:\n" + message
-    );
+            formStatus.textContent =
+                "Network error. Please check your internet connection and try again.";
 
+            console.error("Contact form error:", error);
 
-    // Open visitor's email application
-    const mailtoLink =
-        `mailto:${recipient}?subject=${emailSubject}&body=${emailBody}`;
+        } finally {
 
-    window.location.href = mailtoLink;
+            // Restore button
+            submitButton.disabled = false;
+            submitButton.textContent = "Send Message ↗";
 
-    formStatus.textContent =
-        "Your email application is opening. Please send your message there.";
+        }
 
-});
+    });
+
+}
 
 // =========================
 // 1. AUTOMATIC COPYRIGHT YEAR
