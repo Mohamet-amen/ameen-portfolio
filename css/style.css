@@ -1664,10 +1664,7 @@ html[data-theme="light"] .menu-toggle {
     color: #1c1c38;
 }
 
-html[data-theme="light"] .nav-menu {
-    background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
-}
+
 
 html[data-theme="light"] .nav-links li a {
     color: #1c1c38;
@@ -1770,5 +1767,133 @@ html[data-theme="light"] .theme-toggle:hover {
     html[data-theme="light"] .menu-toggle:hover {
         background: #f3e8ff;
         color: #a855f7;
+    }
+}
+/* =========================
+   NAVBAR SAME BACKGROUND
+========================= */
+
+/* DARK MODE */
+.header,
+.navbar,
+.nav-menu,
+.nav-links {
+    background: #101024 !important;
+}
+
+/* LIGHT MODE */
+html[data-theme="light"] .header,
+html[data-theme="light"] .navbar,
+html[data-theme="light"] .nav-menu,
+html[data-theme="light"] .nav-links {
+    background: #ffffff !important;
+}
+
+/* Navigation links */
+.nav-links a {
+    background: transparent !important;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+/* Dark mode hover */
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(168, 85, 247, 0.15) !important;
+}
+
+/* Light mode hover */
+html[data-theme="light"] .nav-links a:hover,
+html[data-theme="light"] .nav-links a.active {
+    background: rgba(168, 85, 247, 0.12) !important;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+    .nav-menu {
+        box-shadow: none !important;
+        border: none !important;
+    }
+}
+/* MOBILE NAVBAR ORDER */
+@media (max-width: 800px) {
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: relative;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .nav-button {
+        order: 2;
+        margin-left: auto;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .theme-toggle {
+        order: 3;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .menu-toggle {
+        order: 4;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .nav-menu {
+        order: 5;
+    }
+}
+/* =========================
+   DESKTOP NAVIGATION
+========================= */
+
+@media (min-width: 801px) {
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .nav-menu {
+        order: 2;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .nav-button {
+        order: 3;
+        margin-left: 25px;
+    }
+
+    .theme-toggle {
+        order: 4;
+        margin-left: 15px;
+    }
+
+    .menu-toggle {
+        display: none;
     }
 }
