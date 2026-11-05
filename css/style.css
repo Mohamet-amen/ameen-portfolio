@@ -1398,3 +1398,175 @@ a {
     }
 
 }
+
+
+
+/* =========================
+   21. DARK / LIGHT THEME
+   Add data-theme="light" to the <html> element to enable Light Mode.
+========================= */
+
+/* Smooth theme transitions */
+body,
+.header,
+.about,
+.projects,
+.services,
+.contact,
+.footer,
+.profile-card,
+.experience-badge,
+.skill-card,
+.project-card,
+.service-card,
+.contact-form,
+.input-group input,
+.input-group textarea,
+.tech-tags span {
+    transition: background-color 0.3s ease, color 0.3s ease,
+                border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Light theme colors */
+html[data-theme="light"] body {
+    background: #f7f8fc;
+    color: #182033;
+}
+
+html[data-theme="light"] .header {
+    background: rgba(247, 248, 252, 0.94);
+    border-bottom-color: #e5e7ef;
+}
+
+html[data-theme="light"] .nav-links a {
+    color: #596174;
+}
+
+html[data-theme="light"] .nav-button {
+    color: #7134b5;
+}
+
+html[data-theme="light"] .nav-button:hover {
+    color: #ffffff;
+}
+
+html[data-theme="light"] .description,
+html[data-theme="light"] .about-description,
+html[data-theme="light"] .skills-heading > p:last-child,
+html[data-theme="light"] .projects-heading > p:last-child,
+html[data-theme="light"] .services-heading > p:last-child,
+html[data-theme="light"] .contact-heading > p:last-child,
+html[data-theme="light"] .contact-info > p,
+html[data-theme="light"] .profile-card p,
+html[data-theme="light"] .skill-card p,
+html[data-theme="light"] .project-info > p,
+html[data-theme="light"] .service-card p,
+html[data-theme="light"] .contact-item p,
+html[data-theme="light"] .footer-brand p,
+html[data-theme="light"] .footer-links a,
+html[data-theme="light"] .footer-social a {
+    color: #596174;
+}
+
+html[data-theme="light"] .profile-card,
+html[data-theme="light"] .skill-card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .service-card,
+html[data-theme="light"] .contact-form {
+    background: #ffffff;
+    border-color: #e1e5ef;
+    box-shadow: 0 10px 30px rgba(31, 41, 55, 0.07);
+}
+
+html[data-theme="light"] .tech-tags span {
+    background: #e9e5f7;
+    color: #087e98;
+}
+
+html[data-theme="light"] .about,
+html[data-theme="light"] .projects,
+html[data-theme="light"] .contact {
+    background: #eef1f8;
+}
+
+html[data-theme="light"] .services {
+    background: #f7f8fc;
+}
+
+html[data-theme="light"] .experience-badge {
+    background: #ffffff;
+    border-color: #a855f7;
+    color: #182033;
+}
+
+html[data-theme="light"] .about-info span {
+    color: #596174;
+}
+
+html[data-theme="light"] .skill-level {
+    background: #dce1ec;
+}
+
+html[data-theme="light"] .input-group input,
+html[data-theme="light"] .input-group textarea {
+    background: #f7f8fc;
+    border-color: #d9deea;
+    color: #182033;
+}
+
+html[data-theme="light"] .input-group input::placeholder,
+html[data-theme="light"] .input-group textarea::placeholder {
+    color: #858da0;
+}
+
+html[data-theme="light"] .footer {
+    background: #e6eaf3;
+    border-top-color: #d9deea;
+}
+
+html[data-theme="light"] .footer-links h3,
+html[data-theme="light"] .footer-social h3 {
+    color: #182033;
+}
+
+html[data-theme="light"] .footer-bottom {
+    border-top-color: #d1d7e4;
+}
+
+html[data-theme="light"] .footer-bottom p {
+    color: #687186;
+}
+
+html[data-theme="light"] .secondary-btn:hover,
+html[data-theme="light"] .github-btn:hover {
+    color: #ffffff;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a855f7;
+    border-radius: 50%;
+    background: transparent;
+    color: #a855f7;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: #a855f7;
+    color: #ffffff;
+    transform: rotate(12deg);
+}
+
+@media (max-width: 650px) {
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+    }
+}

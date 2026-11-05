@@ -2,7 +2,45 @@
 // Ameen Portfolio
 
 console.log("Ameen Portfolio is running successfully!");
+// =========================
+// DARK / LIGHT MODE
+// =========================
 
+const themeToggle = document.getElementById("theme-toggle");
+
+// Load saved theme
+const savedTheme = localStorage.getItem("ameen-theme") || "dark";
+
+if (savedTheme === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+    themeToggle.textContent = "🌙";
+    themeToggle.setAttribute("aria-label", "Switch to dark mode");
+}
+
+// Toggle theme
+themeToggle.addEventListener("click", function () {
+
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+
+    if (currentTheme === "light") {
+
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("ameen-theme", "dark");
+
+        themeToggle.textContent = "☀️";
+        themeToggle.setAttribute("aria-label", "Switch to light mode");
+
+    } else {
+
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("ameen-theme", "light");
+
+        themeToggle.textContent = "🌙";
+        themeToggle.setAttribute("aria-label", "Switch to dark mode");
+
+    }
+
+});
 // =========================
 // =========================
 // AMEEN PORTFOLIO CONTACT FORM
